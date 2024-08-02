@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
+
+/* color convertor: https://rgb.to/rgb/ */
+/* theme keys https://github.com/tailwindlabs/tailwindcss/blob/e000caa0bdaa9f67cc0ce7ea1ea43101af10ce32/packages/tailwindcss/src/theme.ts#L149 */
+
+/* converted all js variables to css ones from tailwind.config */
+@theme {
+
+     /* Breakpoints */
+    --breakpoint-md: 660px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+
+    /* colors from palette */
+    --color-light-p1: #f5f7fe;
+    --color-light-p2: #7a95f3;
+    --color-light-p3: #3d64ee;
+    --color-light-p4: #0033e8;
+    --color-light-p5: #002bc3;
+    --color-light-p6: #00239e;
+    --color-light-p7: #001b79;
+    --color-light-d1: #fdf5f8;
+    --color-light-d2: #f1a7bf;
+    --color-light-d3: #e55885;
+    --color-light-d4: #d90a4c;
+    --color-light-d5: #b60840;
+    --color-light-d6: #940734;
+    --color-light-d7: #710528;
+    --color-light-n1: #fff;
+    --color-light-n2: #f5f6fa;
+    --color-light-n3: #ebecf0;
+    --color-light-n4: #e1e2e6;
+    --color-light-n5: #a7a7aa;
+    --color-light-n6: #7f8082;
+    --color-light-n7: #2f3030;
+    --color-light-o1: #2f30300a;
+    --color-light-o2: #2f303014;
+    --color-light-o3: #2f303029;
+    --color-light-o4: #2f303052;
+    --color-light-o5: #2f30307a;
+    --color-light-o6: #2f3030a3;
+    --color-light-o7: #2f3030;
+    --color-dark-p1: #eef4fe;
+    --color-dark-p2: #cfdefc;
+    --color-dark-p3: #a0c0fa;
+    --color-dark-p4: #77abff;
+    --color-dark-p5: #6789c7;
+    --color-dark-p6: #41567d;
+    --color-dark-p7: #27334b;
+    --color-dark-d1: #fae8ee;
+    --color-dark-d2: #f3c6d5;
+    --color-dark-d3: #ec95b1;
+    --color-dark-d4: #e7769a;
+    --color-dark-d5: #be5e7c;
+    --color-dark-d6: #7d3c51;
+    --color-dark-d7: #3b1b26;
+    --color-dark-n1: #111214;
+    --color-dark-n2: #272829;
+    --color-dark-n3: #3a3b3c;
+    --color-dark-n4: #4d4d4e;
+    --color-dark-n5: #858686;
+    --color-dark-n6: #bdbebe;
+    --color-dark-n7: #fff;
+    --color-dark-o1: #ffffff14;
+    --color-dark-o2: #ffffff29;
+    --color-dark-o3: #ffffff52;
+    --color-dark-o4: #ffffff7a;
+    --color-dark-o5: #ffffffa3;
+    --color-dark-o6: #ffffffcc;
+    --color-dark-o7: #fff;
+
+    /* colors from tailwind.config */
+    --color-black-4: rgb(var(--color-black) / 0.04);
+    --color-black-8: rgb(var(--color-black) / 0.08);
+    --color-black-10: rgb(var(--color-black) / 0.10);
+    --color-black-40: rgb(var(--color-black) / 0.40);
+    --color-black-78: rgb(var(--color-black) / 0.78);
+    --color-black-85: rgb(var(--color-black) / 0.85);
+    --color-blue-35: rgba(0, 51, 232, 0.35);
+    --color-blue-500: 0 51 232;
+    --color-blue-600: 0 40 186;
+    --color-blue-700: 0 22 101;
+    --color-blue-light: 82 148 255;
+    --color-gray-95: 240 241 242;
+    --color-gray-100: 235 235 235;
+    --color-gray-200: 244 244 249;
+    --color-gray-236: 236 236 236;
+    --color-gray-300: 246 246 246;
+    --color-gray-deep: 47 50 56;
+    --color-gray-dark: 26 26 28;
+    --color-gray-warm: 155 155 155;
+    --color-gray-white: 236 236 236;
+    --color-gray-davy: #232323;
+    --color-snowy: 241 242 248;
+    --color-snowy-2: 245 246 250;
+    --color-azul: 23 69 239;
+    --color-scarlet: 208 2 27;
+
+    /* spacing */
+    --spacing-5_25: 1.375rem;
+    --spacing-10_5: 2.625rem;
+    --spacing-13_75: 3.4375rem;
+    --spacing-15: 3.75rem;
+    --spacing-16_5: 4.125rem;
+    --spacing-18: 4.5rem;
+    --spacing-19: 4.75rem;
+    --spacing-22: 5.5rem;
+    --spacing-30: 7.5rem;
+    --spacing-50: 12.5rem;
+    --spacing-navBarDesktop: var(--navbar-height-desktop);
+    --spacing-navBarMobile: var(--navbar-height-mobile);
+    --spacing-articleSecondaryNavBarTablet: 6.75rem;
+    --spacing-profileMenuMobile: 10.75rem;
+    --spacing-profileMenuTablet: 16.9375rem;
+    --spacing-profileMenuDesktop: 18.5rem;
+
+    /* box shadow */
+    --shadow-0: 0 2px 6px 0 rgba(0, 33, 155, 0.12);
+    --shadow-1: 0 4px 5px -2px rgba(0, 33, 155, 0.12);
+    --shadow-2: 1px 0px 5px 1px rgba(0, 33, 155, 0.12);
+    --shadow-md: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    --shadow-faq: 0px 2px 4px rgba(0, 22, 101, 0.05), 0px 5px 20px rgba(0, 22, 101, 0.05);
+    --shadow-modal: 0px 10px 20px rgba(47, 48, 48, 0.12), 0px 5px 10px rgba(47, 48, 48, 0.06);
+    --shadow-slide: 0px 10px 20px rgba(47, 48, 48, 0.04), 0px 2px 4px rgba(47, 48, 48, 0.04);
+    --shadow-issueMenu: 0px 2px 4px rgba(47, 48, 48, 0.04), 0px 10px 20px rgba(47, 48, 48, 0.04);
+
+    /* grid columns */
+    --grid-template-columns-24: repeat(24, minmax(0, 1fr));
+    --grid-template-columns-fill-20_5: repeat(auto-fill, 5.125rem);
+    --grid-template-columns-fill-21: repeat(auto-fill, 5.25rem);
+    --grid-template-columns-fill-22: repeat(auto-fill, 5.5rem);
+    --grid-template-columns-article: auto 300px;
+    --grid-template-columns-articleNavBarMobile: minmax(22%, auto) 2fr minmax(22%, auto);
+
+    /* font size */
+    --font-size-extra-sm: 0.625rem;
+    --font-size-extra-sm--line-height: 1rem;
+
+    /* misc configs */
+    --navbar-height-desktop: 4.25rem;
+    --navbar-height-mobile: 2.75rem;
+    --secondary-navbar-height: 42px;
+    --submenu-height-desktop: 8.125rem;
+    --photo-gallery-control-width: 388px;
+    --max-width-15: 5rem;
+    --min-width-20: 5rem;
+    --inset-8: 2rem;
+    --inset-30: 7.5rem;
+    --border-width-3: 3px;
+
+    /* z-index */
+    --z-index-reaction-bar: 5;
+    --z-index-content-card: 5;
+    --z-index-reaction-clickable-summary: 99;
+    --z-index-ui-control-box: 1555;
+    --z-index-tooltip: 1070;
+    --z-index-socialReactionBar: var(--z-index-reaction-bar);
+    --z-index-contentCard: var(--z-index-content-card);
+    --z-index-navBar: 100;
+    --z-index-navBarBigMenu: 99;
+    --z-index-navBarPopup: 100;
+    --z-index-navBarMobileMenu: 101;
+    --z-index-mobileLcsStack: 100;
+    --z-index-actionMenu: 3003
+}

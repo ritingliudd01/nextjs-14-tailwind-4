@@ -1,0 +1,186 @@
+import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
+
+import { Palette } from "./src/v2/constants/palette";
+import { Breakpoint } from "./src/v2/constants/viewport";
+
+const colors = {
+  white: {
+    DEFAULT: "rgb(var(--color-white) / 1)",
+  },
+  black: {
+    DEFAULT: "rgb(var(--color-black) / 1)",
+    4: "rgb(var(--color-black) / 0.04)",
+    8: "rgb(var(--color-black) / 0.08)",
+    10: "rgb(var(--color-black) / 0.10)",
+    40: "rgb(var(--color-black) / 0.40)",
+    78: "rgb(var(--color-black) / 0.78)",
+    85: "rgb(var(--color-black) / 0.85)",
+  },
+  blue: {
+    35: "rgba(0, 51, 232, 0.35)",
+    500: "rgb(var(--color-blue-500) / 1)",
+    600: "rgb(var(--color-blue-600) / 1)",
+    700: "rgb(var(--color-blue-700) / 1)",
+    light: "rgb(var(--color-blue-light) / 1)",
+  },
+  gray: {
+    DEFAULT: "gray",
+    95: "rgb(var(--color-gray-95) / 1)",
+    100: "rgb(var(--color-gray-100) / 1)",
+    200: "rgb(var(--color-gray-200) / 1)",
+    236: "rgb(var(--color-gray-236) / 1)",
+    300: "rgb(var(--color-gray-300) / 1)",
+    deep: "rgb(var(--color-gray-deep) / 1)",
+    dark: "rgb(var(--color-gray-dark) / 1)",
+    warm: "rgb(var(--color-gray-warm) / 1)",
+    white: "rgb(var(--color-gray-white) / 1)",
+    davy: "#232323",
+  },
+  snowy: {
+    DEFAULT: "rgb(var(--color-snowy) / 1)",
+    2: "rgb(var(--color-snowy-2) / 1)",
+  },
+  azul: {
+    DEFAULT: "rgb(var(--color-azul) / 1)",
+  },
+  scarlet: {
+    DEFAULT: "rgb(var(--color-scarlet) / 1)",
+  },
+  transparent: "transparent",
+  ...Palette,
+};
+
+const colorVarsPlugin = ({ addBase /*, theme */ }) => {
+  const extractColorVars = (colorObj, colorGroup = "") =>
+    Object.entries(colorObj).reduce((vars, [colorKey, value]) => {
+      const cssVariable =
+        colorKey === "DEFAULT"
+          ? `--color${colorGroup}`
+          : `--color${colorGroup}-${colorKey}`;
+
+      const newVars =
+        typeof value === "string"
+          ? { [cssVariable]: value }
+          : extractColorVars(value, `-${colorKey}`);
+
+      return { ...vars, ...newVars };
+    }, {});
+
+  addBase({
+    ":root": extractColorVars(Palette),
+    // may also pick colors from tailwind theme
+    // ":root": extractColorVars(theme("colors")),
+  });
+};
+
+const config: Config = {
+  darkMode: "class",
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./src/v2/**/*.{js,ts,jsx,tsx}",
+    "./src/plugins/**/*.{js,ts,jsx,tsx}",
+    "./src/components/PhotoGallery/**/*.{js,ts,jsx,tsx}",
+    "./src/components/ReactPhotoSwipe/**/*.{js,ts,jsx,tsx}",
+    "./src/components/Ads/**/*.{js,ts,jsx,tsx}",
+    "./modules/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    screens: {
+      sm: `${Breakpoint.SM}`,
+      md: `${Breakpoint.MD}px`,
+      lg: `${Breakpoint.LG}px`,
+      xl: `${Breakpoint.XL}px`,
+      mobileOnly: { min: `${Breakpoint.SM}`, max: `${Breakpoint.MD - 1}px` },
+      tabletOnly: { min: `${Breakpoint.MD}px`, max: `${Breakpoint.LG - 1}px` },
+      mobileAndTabletOnly: {
+        min: `${Breakpoint.SM}`,
+        max: `${Breakpoint.LG - 1}px`,
+      },
+    },
+    extend: {
+      variants: {
+        backgroundOpacity: ["hover", "active"],
+      },
+      colors,
+      gridTemplateColumns: {
+        24: "repeat(24, minmax(0, 1fr))",
+        "fill-20.5": "repeat(auto-fill, 5.125rem)",
+        "fill-21": "repeat(auto-fill, 5.25rem)",
+        "fill-22": "repeat(auto-fill, 5.5rem)",
+        article: "auto 300px",
+        articleNavBarMobile: "minmax(22%, auto) 2fr minmax(22%, auto)",
+      },
+      spacing: {
+        5.25: "1.375rem",
+        10.5: "2.625rem",
+        13.75: "3.4375rem",
+        15: "3.75rem",
+        16.5: "4.125rem",
+        18: "4.5rem",
+        19: "4.75rem",
+        22: "5.5rem",
+        30: "7.5rem",
+        50: "12.5rem",
+        navBarDesktop: "var(--navbar-height-desktop)",
+        navBarMobile: "var(--navbar-height-mobile)",
+        articleSecondaryNavBarTablet: "6.75rem",
+        profileMenuMobile: "10.75rem",
+        profileMenuTablet: "16.9375rem",
+        profileMenuDesktop: "18.5rem",
+      },
+      maxWidth: {
+        15: "5rem",
+      },
+      minWidth: {
+        20: "5rem",
+      },
+      inset: {
+        8: "2rem",
+        30: "7.5rem",
+      },
+      borderWidth: {
+        3: "3px",
+      },
+      boxShadow: {
+        0: "0 2px 6px 0 rgba(0, 33, 155, 0.12)",
+        1: "0 4px 5px -2px rgba(0, 33, 155, 0.12)",
+        2: "1px 0px 5px 1px rgba(0, 33, 155, 0.12)",
+        md: "0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1)",
+        faq: "0px 2px 4px rgba(0, 22, 101, 0.05), 0px 5px 20px rgba(0, 22, 101, 0.05)",
+        modal:
+          "0px 10px 20px rgba(47, 48, 48, 0.12), 0px 5px 10px rgba(47, 48, 48, 0.06)",
+        slide:
+          "0px 10px 20px rgba(47, 48, 48, 0.04), 0px 2px 4px rgba(47, 48, 48, 0.04)",
+        issueMenu:
+          "0px 2px 4px rgba(47, 48, 48, 0.04), 0px 10px 20px rgba(47, 48, 48, 0.04)",
+      },
+      zIndex: {
+        socialReactionBar: "var(--z-index-reaction-bar)",
+        contentCard: "var(--z-index-content-card)",
+        navBar: "100",
+        navBarBigMenu: "99",
+        navBarPopup: "100", // need 1 gt. navBarBigMenu
+        navBarMobileMenu: "101",
+        mobileLcsStack: "100",
+        tooltip: "var(--z-index-tooltip)",
+        actionMenu: "3003",
+      },
+      fontSize: {
+        "extra-sm": ["0.625rem", "1rem"],
+      },
+    },
+  },
+  plugins: [
+    colorVarsPlugin,
+    plugin(({ matchUtilities }) => {
+      matchUtilities({
+        "animate-duration": (value) => {
+          return { "animation-duration": value };
+        },
+      });
+    }),
+  ],
+};
+
+export default config;
